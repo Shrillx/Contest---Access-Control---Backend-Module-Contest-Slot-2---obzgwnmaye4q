@@ -1,5 +1,7 @@
 const accessControlMiddleware = (req, res, next) => {
   const userRole = req.decoded ? req.decoded.role : null;
+    console.log("this is request ->>"+req);
+  console.log("this is userrole ->>"+userRole);
 
   if (userRole === "admin") {
     next();
