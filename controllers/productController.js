@@ -17,8 +17,7 @@ exports.createProduct = async (req, res) => {
   try {
     // TODO 1: Create a new Product and check if the role is admin if admin then, implement TODO 2
     // TODO 2: Create a new product, save it to the database, and send a success response
-    // res.status(201).json({ message: 'Create a new product', product: newProduct });
-
+    
     const userRole = req.user.role; 
     
     if(userRole !== 'admin'){
@@ -27,6 +26,10 @@ exports.createProduct = async (req, res) => {
     
     const {name, price }= req.body; 
     const newProduct = new Product({name,price});
+    
+    await newProduct.save();
+    res.status(201).json({ message: 'Create a new product', product: newProduct });
+    
 
   } catch (error) {
     console.error(error);
