@@ -18,7 +18,7 @@ exports.createProduct = async (req, res) => {
     // TODO 1: Create a new Product and check if the role is admin if admin then, implement TODO 2
     // TODO 2: Create a new product, save it to the database, and send a success response
     
-    const userRole = req.decoded ? req.decoded.role: null;
+    const userRole = req.body ? req.body.role : null;
     
     if(userRole !== 'admin'){
       return res.status(403).json({message: "Permission denied. Admin role required."})
